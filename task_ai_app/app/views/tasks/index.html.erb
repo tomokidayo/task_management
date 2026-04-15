@@ -1,0 +1,10 @@
+<h1>タスク一覧</h1>
+<%= link_to "新規タスク", new_task_path %>
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <strong><%= task.title %></strong>
+      （<%= task.status %> / 優先度: <%= task.priority %>）
+    </li>
+  <% end %>
+</ul>
