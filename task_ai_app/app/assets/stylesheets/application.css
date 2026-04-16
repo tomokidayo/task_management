@@ -64,3 +64,29 @@
     font-size: 12px;
     padding: 3px 6px;
 }
+
+/* 検索フォーム全体を横並びに */
+.search-form {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+/* form_with の中身も横並びに */
+.search-form form {
+    display: flex;
+    gap: 16px;
+}
+
+/* 各入力ブロックを縦並びに */
+.search-form div {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 入力欄の幅を揃える */
+.search-form input,
+.search-form select {
+    width: 180px;
+}

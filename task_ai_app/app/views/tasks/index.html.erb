@@ -1,15 +1,79 @@
 <h1>タスク一覧</h1>
+<!-- 検索・フィルター -->
+<div class="search-form">
+  <%= form_with url: tasks_path, method: :get, local: true do |f| %>
+    <div>
+      <%= f.label :keyword, "キーワード検索" %>
+      <%= f.text_field :keyword, value: params[:keyword] %>
+    </div>
+    <div>
+      <%= f.label :status, "ステータス" %>
+      <%= f.select :status,
+            Task::STATUS_LABELS.map { |key, label| [label, key] },
+            { include_blank: "すべて" },
+            { selected: params[:status] } %>
+    </div>
+    <div>
+      <%= f.label :priority, "優先度" %>
+      <%= f.select :priority,
+            Task::PRIORITY_LABELS.map { |key, label| [label, key] },
+            { include_blank: "すべて" },
+            { selected: params[:priority] } %>
+    </div>
+    <div>
+      <%= f.submit "検索", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+<!-- 新規作成 -->
 <div class="actions">
   <%= link_to "新規タスク", new_task_path, class: "btn btn-primary" %>
 </div>
+<!-- 一覧 -->
 <table class="task-table">
   <thead>
     <tr>
       <th>タイトル</th>
-      <th>ステータス</th>
-      <th>優先度</th>
-      <th>締切</th>
-      <th>想定時間</th>
+      <th>
+        <%= link_to "ステータス",
+          tasks_path(
+            keyword: params[:keyword],
+            status: params[:status],
+            priority: params[:priority],
+            sort: "status",
+            direction: params[:direction] == "asc" ? "desc" : "asc"
+          ) %>
+      </th>
+      <th>
+        <%= link_to "優先度",
+          tasks_path(
+            keyword: params[:keyword],
+            status: params[:status],
+            priority: params[:priority],
+            sort: "priority",
+            direction: params[:direction] == "asc" ? "desc" : "asc"
+          ) %>
+      </th>
+      <th>
+        <%= link_to "締切",
+          tasks_path(
+            keyword: params[:keyword],
+            status: params[:status],
+            priority: params[:priority],
+            sort: "deadline",
+            direction: params[:direction] == "asc" ? "desc" : "asc"
+          ) %>
+      </th>
+      <th>
+        <%= link_to "想定時間",
+          tasks_path(
+            keyword: params[:keyword],
+            status: params[:status],
+            priority: params[:priority],
+            sort: "estimated_time",
+            direction: params[:direction] == "asc" ? "desc" : "asc"
+          ) %>
+      </th>
       <th>操作</th>
     </tr>
   </thead>
@@ -21,7 +85,7 @@
           <%= form_with url: update_status_task_path(task), method: :patch, local: true do |f| %>
             <%= f.select :status,
               Task::STATUS_LABELS.map { |key, value| [value, key] },
-              selected: task.status %>
+              { selected: task.status } %>
             <%= f.submit "変更", class: "btn btn-sm" %>
           <% end %>
         </td>
