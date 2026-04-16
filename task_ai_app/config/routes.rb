@@ -22,6 +22,11 @@ Rails.application.routes.draw do
 
   resources :tasks
 
+  resources :tasks do
+    patch :update_status, on: :member
+  end
+
+
   # Defines the root path route ("/")
   # root "posts#index"
 end

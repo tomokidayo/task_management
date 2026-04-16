@@ -1,2 +1,13 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<h1><%= @task.title %></h1>
+<p>詳細: <%= @task.description %></p>
+<p>ステータス: <%= @task.status_label %></p>
+<p>優先度: <%= @task.priority_label %></p>
+<p>締切: <%= @task.deadline&.strftime("%Y-%m-%d %H:%M") %></p>
+<%# <p>想定時間: <%= @task.estimated_time %>
+<p>想定時間: <%= @task.estimated_time_hhmm %> </p>
+<%# <p>実績時間: <%= @task.actual_time %>
+<p>実績時間: <%= @task.actual_time_hhmm %> </p>
+<%= link_to "編集", edit_task_path(@task) %>
+<%= link_to "削除", task_path(@task),
+      data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+<%= link_to "一覧に戻る", tasks_path %>

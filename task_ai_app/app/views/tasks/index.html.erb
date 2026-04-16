@@ -1,10 +1,43 @@
 <h1>タスク一覧</h1>
-<%= link_to "新規タスク", new_task_path %>
-<ul>
-  <% @tasks.each do |task| %>
-    <li>
-      <strong><%= task.title %></strong>
-      （<%= task.status %> / 優先度: <%= task.priority %>）
-    </li>
-  <% end %>
-</ul>
+<div class="actions">
+  <%= link_to "新規タスク", new_task_path, class: "btn btn-primary" %>
+</div>
+<table class="task-table">
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>ステータス</th>
+      <th>優先度</th>
+      <th>締切</th>
+      <th>想定時間</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td>
+          <%= form_with url: update_status_task_path(task), method: :patch, local: true do |f| %>
+            <%= f.select :status,
+              Task::STATUS_LABELS.map { |key, value| [value, key] },
+              selected: task.status %>
+            <%= f.submit "変更", class: "btn btn-sm" %>
+          <% end %>
+        </td>
+        <td><%= Task::PRIORITY_LABELS[task.priority] %></td>
+        <td><%= task.deadline&.strftime("%Y-%m-%d %H:%M") %></td>
+        <td><%= task.estimated_time_hhmm %></td>
+        <td class="actions">
+          <%= link_to "詳細", task_path(task), class: "btn btn-sm" %>
+          <%= link_to "編集", edit_task_path(task), class: "btn btn-sm" %>
+          <%= button_to "削除", task_path(task),
+                method: :delete,
+                form: { style: "display:inline;" },
+                data: { turbo_confirm: "本当に削除しますか？" },
+                class: "btn btn-sm btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
