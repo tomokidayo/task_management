@@ -2,7 +2,12 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @tasks = current_user.tasks.order(created_at: :desc)
+    # @tasks = current_user.tasks.order(created_at: :desc)
+    @tasks = current_user.tasks
+    .search(params[:keyword])
+    .with_status(params[:status])
+    .with_priority(params[:priority])
+    .order(deadline: :asc)
   end
 
   def new
@@ -19,16 +24,39 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task = current_user.tasks.find(params[:id])
   end
 
   def update
+    @task = current_user.tasks.find(params[:id])
+    if @task.update(task_params)
+      redirect_to task_path(@task), notice: "タスクを更新しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
+  def update_status
+    @task = current_user.tasks.find(params[:id])
+
+    if @task.update(status: params[:status])
+      redirect_to tasks_path, notice: "ステータスを更新しました"
+    else
+      redirect_to tasks_path, alert: "更新に失敗しました"
+    end
+  end
+
+
   def destroy
+    @task = current_user.tasks.find(params[:id])
+    @task.destroy
+    redirect_to tasks_path, notice: "タスクを削除しました"
   end
 
   def show
+    @task = current_user.tasks.find(params[:id])
   end
+
 
 
   private

@@ -10,22 +10,24 @@
   </div>
   <div>
     <%= f.label :status, "ステータス" %><br>
-    <%= f.select :status, ["未着手", "進行中", "完了"] %>
+    <%= f.select :status, Task::STATUS_LABELS.map { |key, label| [label, key] } %>
   </div>
   <div>
     <%= f.label :priority, "優先度" %><br>
-    <%= f.number_field :priority %>
+    <%= f.select :priority,
+      Task::PRIORITY_LABELS.map { |key, label| [label, key] },
+      selected: @task.priority %>
   </div>
   <div>
     <%= f.label :deadline, "締切" %><br>
     <%= f.datetime_field :deadline %>
   </div>
   <div>
-    <%= f.label :estimated_time, "想定時間（h）" %><br>
+    <%= f.label :estimated_time, "想定時間（分）" %><br>
     <%= f.number_field :estimated_time %>
   </div>
   <div>
-    <%= f.label :actual_time, "実績時間（h）" %><br>
+    <%= f.label :actual_time, "実績時間（分）" %><br>
     <%= f.number_field :actual_time %>
   </div>
   <%= f.submit "作成" %>
