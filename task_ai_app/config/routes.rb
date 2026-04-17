@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "chat_messages/create"
+  get "chat_sessions/index"
+  get "chat_sessions/show"
+  get "chat_sessions/create"
   get "tasks/index"
   get "tasks/new"
   get "tasks/create"
@@ -24,6 +28,14 @@ Rails.application.routes.draw do
 
   resources :tasks do
     patch :update_status, on: :member
+  end
+
+  resources :chat_sessions, only: [ :index, :show, :create ] do
+    resources :chat_messages, only: [ :create ]
+  end
+
+  resources :chat_sessions, only: [ :index, :show, :create ] do
+    resources :chat_messages, only: [ :create ]
   end
 
 

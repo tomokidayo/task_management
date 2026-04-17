@@ -1,0 +1,12 @@
+<h1><%= @chat_session.title || "チャット" %></h1>
+<turbo-frame id="messages">
+  <%= render @chat_messages %>
+</turbo-frame>
+<%= form_with url: chat_session_chat_messages_path(@chat_session),
+              method: :post,
+              data: { turbo_stream: true } do |f| %>
+  <div class="flex gap-2 mt-4">
+    <%= f.text_field :content, class: "border p-2 flex-1", placeholder: "メッセージを入力..." %>
+    <%= f.submit "送信", class: "bg-blue-500 text-white px-4 py-2 rounded" %>
+  </div>
+<% end %>

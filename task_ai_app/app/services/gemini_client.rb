@@ -42,7 +42,6 @@ class GeminiClient
     puts "=== Gemini API Response ==="
     puts response.body.force_encoding("UTF-8")
     # puts response.body
-
     json = JSON.parse(response.body)
 
     json.dig("candidates", 0, "content", "parts", 0, "text")
