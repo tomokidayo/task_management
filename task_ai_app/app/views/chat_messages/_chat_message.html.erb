@@ -1,15 +1,5 @@
-<div class="my-2">
-  <% if chat_message.role == "user" %>
-    <div class="text-right">
-      <span class="bg-blue-500 text-white px-3 py-2 rounded inline-block">
-        <%= chat_message.content %>
-      </span>
-    </div>
-  <% else %>
-    <div class="text-left">
-      <span class="bg-gray-200 px-3 py-2 rounded inline-block">
-        <%= chat_message.content %>
-      </span>
-    </div>
-  <% end %>
+<div class="<%= chat_message.role == 'user' ? 'msg-right' : 'msg-left' %>">
+  <div class="msg-bubble <%= chat_message.role == 'user' ? 'msg-user' : 'msg-ai' %>">
+    <%= simple_format(chat_message.content) %>
+  </div>
 </div>

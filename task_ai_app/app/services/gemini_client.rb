@@ -19,10 +19,10 @@ class GeminiClient
   # 会話履歴を送る（AIチャット機能）
   def self.chat(messages)
     contents = messages.map do |msg|
-      {
-        role: msg.role, # "user" or "assistant"
-        parts: [ { text: msg.content } ]
-      }
+    {
+      role: msg.role == "system" ? "user" : msg.role, # system メッセージも user として扱う
+      parts: [ { text: msg.content } ]
+    }
     end
 
     body = { contents: contents }
