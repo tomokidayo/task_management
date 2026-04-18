@@ -22,13 +22,22 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  root to: "home#index"
+  # root to: "home#index"
+  # root to: "devise/sessions#new"
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
 
+  # root "tasks#index"
   resources :tasks
+
 
   resources :tasks do
     patch :update_status, on: :member
   end
+
+  resources :chat_sessions, only: [ :index, :show, :create ]
+
 
   resources :chat_sessions, only: [ :index, :show, :create ] do
     resources :chat_messages, only: [ :create ]

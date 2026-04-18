@@ -8,8 +8,14 @@ class ChatMessagesController < ApplicationController
       content: params[:content]
     )
 
+    # ★ タスク一覧プロンプトを毎回先頭に追加
+    system_prompt_message = @chat_session.chat_messages.find_by(role: :system)
+
+    messages_for_ai = [ system_prompt_message ] + @chat_session.chat_messages.where.not(role: :system)
+
+
     # AI の返答
-    ai_reply = GeminiClient.chat(@chat_session.chat_messages)
+    ai_reply = GeminiClient.chat(messages_for_ai)
 
     # ★ これが必要！
     @assistant_message = @chat_session.chat_messages.create!(

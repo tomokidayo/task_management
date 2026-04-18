@@ -25,6 +25,12 @@
     </div>
   <% end %>
 </div>
+<%# <div class="chat-entry"> %>
+<%# <%= link_to "AIチャットへ", chat_sessions_path, class: "btn btn-chat" %>
+<%# </div>s %>
+<div class="chat-entry">
+  <%= link_to "AIチャットへ", chat_sessions_path,  class: "btn btn-chat" %>
+</div>
 <!-- 新規作成 -->
 <div class="actions">
   <%= link_to "新規タスク", new_task_path, class: "btn btn-primary" %>

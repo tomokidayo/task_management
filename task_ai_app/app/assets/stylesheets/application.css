@@ -90,3 +90,83 @@
 .search-form select {
     width: 180px;
 }
+
+
+/*ヘッダーのUI*/
+header.header {
+    display: flex;
+    justify-content: space-between;
+    /* 左右に配置 */
+    align-items: center;
+    padding: 10px 20px;
+    background: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* AIチャットへのリンク */
+.btn-chat {
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-chat:hover {
+    background-color: #43a047;
+}
+
+.chat-area {
+    height: 60vh;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+}
+
+/* 左右分け */
+.msg-left {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.msg-right {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+/* バブル */
+.msg-bubble {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 12px;
+    max-width: 70%;
+    word-break: break-word;
+}
+
+.msg-user {
+    background: #3b82f6;
+    color: white;
+}
+
+.msg-ai {
+    background: #e5e7eb;
+    color: #111;
+}

@@ -1,7 +1,7 @@
 <h1><%= @chat_session.title || "チャット" %></h1>
-<turbo-frame id="messages">
+<div id="messages" class="chat-area">
   <%= render @chat_messages %>
-</turbo-frame>
+</div>
 <%= form_with url: chat_session_chat_messages_path(@chat_session),
               method: :post,
               data: { turbo_stream: true } do |f| %>
@@ -10,3 +10,9 @@
     <%= f.submit "送信", class: "bg-blue-500 text-white px-4 py-2 rounded" %>
   </div>
 <% end %>
+<script>
+  document.addEventListener("turbo:render", () => {
+    const messages = document.getElementById("messages");
+    messages.scrollTop = messages.scrollHeight;
+  });
+</script>
