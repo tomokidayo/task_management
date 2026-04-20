@@ -1,104 +1,111 @@
-<h1>タスク一覧</h1>
-<!-- 検索・フィルター -->
-<div class="search-form">
-  <%= form_with url: tasks_path, method: :get, local: true do |f| %>
-    <div>
-      <%= f.label :keyword, "キーワード検索" %>
-      <%= f.text_field :keyword, value: params[:keyword] %>
+<h1 class="task-list__title">タスク一覧</h1>
+<!-- 検索フォーム -->
+<div class="task-search">
+  <%= form_with url: tasks_path, method: :get, local: true, html: { class: "task-search__form" } do |f| %>
+    <div class="task-search__group">
+      <%= f.label :keyword, "キーワード検索", class: "task-search__label" %>
+      <%= f.text_field :keyword, value: params[:keyword], class: "task-search__input" %>
     </div>
-    <div>
-      <%= f.label :status, "ステータス" %>
+    <div class="task-search__group">
+      <%= f.label :status, "ステータス", class: "task-search__label" %>
       <%= f.select :status,
             Task::STATUS_LABELS.map { |key, label| [label, key] },
             { include_blank: "すべて" },
-            { selected: params[:status] } %>
+            { selected: params[:status], class: "task-search__input" } %>
     </div>
-    <div>
-      <%= f.label :priority, "優先度" %>
+    <div class="task-search__group">
+      <%= f.label :priority, "優先度", class: "task-search__label" %>
       <%= f.select :priority,
             Task::PRIORITY_LABELS.map { |key, label| [label, key] },
             { include_blank: "すべて" },
-            { selected: params[:priority] } %>
+            { selected: params[:priority], class: "task-search__input" } %>
     </div>
-    <div>
+    <div class="task-search__actions">
       <%= f.submit "検索", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>
-<%# <div class="chat-entry"> %>
-<%# <%= link_to "AIチャットへ", chat_sessions_path, class: "btn btn-chat" %>
-<%# </div>s %>
-<div class="chat-entry">
-  <%= link_to "AIチャットへ", chat_sessions_path,  class: "btn btn-chat" %>
+<!-- AIチャット -->
+<div class="task-list__chat">
+  <%= link_to "AIチャットへ", chat_sessions_path, class: "btn btn-chat" %>
 </div>
 <!-- 新規作成 -->
-<div class="actions">
+<div class="task-list__actions">
   <%= link_to "新規タスク", new_task_path, class: "btn btn-primary" %>
 </div>
-<!-- 一覧 -->
+<!-- 一覧テーブル -->
 <table class="task-table">
-  <thead>
-    <tr>
-      <th>タイトル</th>
-      <th>
+  <thead class="task-table__head">
+    <tr class="task-table__row">
+      <th class="task-table__header">タイトル</th>
+      <th class="task-table__header">
         <%= link_to "ステータス",
-          tasks_path(
-            keyword: params[:keyword],
-            status: params[:status],
-            priority: params[:priority],
-            sort: "status",
-            direction: params[:direction] == "asc" ? "desc" : "asc"
-          ) %>
+        tasks_path(
+          keyword: params[:keyword],
+          status: params[:status],
+          priority: params[:priority],
+          sort: "status",
+          direction: params[:direction] == "asc" ? "desc" : "asc"
+        ),
+        class: "task-table__sort-link"
+      %>
       </th>
-      <th>
+      <th class="task-table__header">
         <%= link_to "優先度",
-          tasks_path(
-            keyword: params[:keyword],
-            status: params[:status],
-            priority: params[:priority],
-            sort: "priority",
-            direction: params[:direction] == "asc" ? "desc" : "asc"
-          ) %>
+        tasks_path(
+          keyword: params[:keyword],
+          status: params[:status],
+          priority: params[:priority],
+          sort: "priority",
+          direction: params[:direction] == "asc" ? "desc" : "asc"
+        ),
+        class: "task-table__sort-link"
+      %>
       </th>
-      <th>
+      <th class="task-table__header">
         <%= link_to "締切",
-          tasks_path(
-            keyword: params[:keyword],
-            status: params[:status],
-            priority: params[:priority],
-            sort: "deadline",
-            direction: params[:direction] == "asc" ? "desc" : "asc"
-          ) %>
+        tasks_path(
+          keyword: params[:keyword],
+          status: params[:status],
+          priority: params[:priority],
+          sort: "deadline",
+          direction: params[:direction] == "asc" ? "desc" : "asc"
+        ),
+        class: "task-table__sort-link"
+      %>
       </th>
-      <th>
+      <th class="task-table__header">
         <%= link_to "想定時間",
-          tasks_path(
-            keyword: params[:keyword],
-            status: params[:status],
-            priority: params[:priority],
-            sort: "estimated_time",
-            direction: params[:direction] == "asc" ? "desc" : "asc"
-          ) %>
+        tasks_path(
+          keyword: params[:keyword],
+          status: params[:status],
+          priority: params[:priority],
+          sort: "estimated_time",
+          direction: params[:direction] == "asc" ? "desc" : "asc"
+        ),
+        class: "task-table__sort-link"
+      %>
       </th>
-      <th>操作</th>
+      <th class="task-table__header">操作</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="task-table__body">
     <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td>
+      <tr class="task-table__row">
+        <td class="task-table__cell"><%= task.title %></td>
+        <td class="task-table__cell">
           <%= form_with url: update_status_task_path(task), method: :patch, local: true do |f| %>
             <%= f.select :status,
               Task::STATUS_LABELS.map { |key, value| [value, key] },
-              { selected: task.status } %>
+              { selected: task.status },
+              class: "task-table__select" %>
             <%= f.submit "変更", class: "btn btn-sm" %>
           <% end %>
         </td>
-        <td><%= Task::PRIORITY_LABELS[task.priority] %></td>
-        <td><%= task.deadline&.strftime("%Y-%m-%d %H:%M") %></td>
-        <td><%= task.estimated_time_hhmm %></td>
-        <td class="actions">
+        <td class="task-table__cell"><%= Task::PRIORITY_LABELS[task.priority] %></td>
+        <td class="task-table__cell"><%= task.deadline&.strftime("%Y-%m-%d %H:%M") %></td>
+        <td class="task-table__cell"><%= task.estimated_time_hhmm %></td>
+        <td class="task-table__cell task-table__actions">
           <%= link_to "詳細", task_path(task), class: "btn btn-sm" %>
           <%= link_to "編集", edit_task_path(task), class: "btn btn-sm" %>
           <%= button_to "削除", task_path(task),
