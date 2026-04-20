@@ -392,3 +392,178 @@ header.header {
 .task-table__sort-link:hover {
     text-decoration: underline;
 }
+
+/* ===========================
+   タスク詳細
+=========================== */
+.task-detail {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.task-detail__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 24px;
+}
+
+.task-detail__item {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.task-detail__label {
+    width: 120px;
+    font-weight: 600;
+    color: #333;
+}
+
+.task-detail__value {
+    flex: 1;
+    color: #555;
+}
+
+.task-detail__actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+}
+
+/* ===========================
+   タスク編集フォーム
+=========================== */
+.task-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.task-form__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 24px;
+}
+
+.task-form__group {
+    margin-bottom: 16px;
+}
+
+.task-form__label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.task-form__input,
+.task-form__select,
+.task-form__textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.task-form__textarea {
+    height: 100px;
+}
+
+.task-form__actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+}
+
+/* ===========================
+   チャット一覧
+=========================== */
+.chat-list {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.chat-list__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.chat-list__actions {
+    margin-bottom: 20px;
+}
+
+.chat-list__items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chat-list__item {
+    margin-bottom: 12px;
+}
+
+.chat-list__link {
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.chat-list__link:hover {
+    text-decoration: underline;
+}
+
+/* ===========================
+   チャット画面
+=========================== */
+.chat-room {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.chat-room__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+/* メッセージ一覧 */
+.chat-room__messages {
+    height: 60vh;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+    margin-bottom: 16px;
+}
+
+/* 入力フォーム */
+.chat-room__form {
+    margin-top: 12px;
+}
+
+.chat-room__input-area {
+    display: flex;
+    gap: 12px;
+}
+
+.chat-room__input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.chat-room__submit {
+    padding: 8px 16px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.chat-room__submit:hover {
+    background-color: #1e4fcf;
+}

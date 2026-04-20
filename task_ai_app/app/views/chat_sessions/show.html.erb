@@ -1,15 +1,20 @@
-<h1><%= @chat_session.title || "チャット" %></h1>
-<div id="messages" class="chat-area">
-  <%= render @chat_messages %>
-</div>
-<%= form_with url: chat_session_chat_messages_path(@chat_session),
-              method: :post,
-              data: { turbo_stream: true } do |f| %>
-  <div class="input-area">
-    <%= f.text_field :content, class: "input-field", placeholder: "メッセージを入力..." %>
-    <%= f.submit "送信", class: "send-button" %>
+<div class="chat-room">
+  <h1 class="chat-room__title"><%= @chat_session.title || "チャット" %></h1>
+  <div id="messages" class="chat-room__messages">
+    <%= render @chat_messages %>
   </div>
-<% end %>
+  <%= form_with url: chat_session_chat_messages_path(@chat_session),
+                method: :post,
+                data: { turbo_stream: true },
+                html: { class: "chat-room__form" } do |f| %>
+    <div class="chat-room__input-area">
+      <%= f.text_field :content,
+            class: "chat-room__input",
+            placeholder: "メッセージを入力..." %>
+      <%= f.submit "送信", class: "chat-room__submit" %>
+    </div>
+  <% end %>
+</div>
 <script>
   document.addEventListener("turbo:render", () => {
     const messages = document.getElementById("messages");
