@@ -1,0 +1,25 @@
+<div class="mypage-form">
+  <h2 class="mypage-form__title">マイページ編集</h2>
+  <%= form_with model: @user, url: mypage_path, method: :patch do |f| %>
+    <div class="mypage-form__group">
+      <%= f.label :name, class: "mypage-form__label" %>
+      <%= f.text_field :name, class: "mypage-form__input" %>
+    </div>
+    <div class="mypage-form__group">
+      <%= f.label :email, class: "mypage-form__label" %>
+      <%= f.email_field :email, class: "mypage-form__input" %>
+    </div>
+    <div class="mypage-form__group">
+      <%= f.label :password, "新しいパスワード", class: "mypage-form__label" %>
+      <%= f.password_field :password, class: "mypage-form__input" %>
+      <p class="mypage-form__note">※変更しない場合は空のままでOK</p>
+    </div>
+    <div class="mypage-form__group">
+      <%= f.label :password_confirmation, "パスワード確認", class: "mypage-form__label" %>
+      <%= f.password_field :password_confirmation, class: "mypage-form__input" %>
+    </div>
+    <div class="mypage-form__actions">
+      <%= f.submit "更新する", class: "mypage-form__submit" %>
+    </div>
+  <% end %>
+</div>

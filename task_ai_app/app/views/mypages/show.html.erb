@@ -1,0 +1,18 @@
+<div class="mypage">
+  <h2 class="mypage__title">マイページ</h2>
+  <div class="mypage__item">
+    <span class="mypage__label">名前</span>
+    <span class="mypage__value"><%= @user.name %></span>
+  </div>
+  <div class="mypage__item">
+    <span class="mypage__label">メールアドレス</span>
+    <span class="mypage__value"><%= @user.email %></span>
+  </div>
+  <div class="mypage__item">
+    <span class="mypage__label">登録日</span>
+    <span class="mypage__value"><%= @user.created_at.strftime("%Y/%m/%d") %></span>
+  </div>
+  <div class="mypage__actions">
+    <%= link_to "編集する", edit_mypage_path, class: "mypage__edit-button" %>
+  </div>
+</div>
