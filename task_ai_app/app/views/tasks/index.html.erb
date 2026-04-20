@@ -39,7 +39,8 @@
     <tr class="task-table__row">
       <th class="task-table__header">タイトル</th>
       <th class="task-table__header">
-        <%= link_to "ステータス",
+        <% arrow = (params[:sort] == "status") ? (params[:direction] == "asc" ? "↑" : "↓") : "  -" %>
+        <%= link_to "ステータス#{arrow}",
         tasks_path(
           keyword: params[:keyword],
           status: params[:status],
@@ -51,7 +52,8 @@
       %>
       </th>
       <th class="task-table__header">
-        <%= link_to "優先度",
+        <% arrow = (params[:sort] == "priority") ? (params[:direction] == "asc" ? "↑" : "↓") : "  -" %>
+        <%= link_to "優先度#{arrow}",
         tasks_path(
           keyword: params[:keyword],
           status: params[:status],
@@ -63,7 +65,8 @@
       %>
       </th>
       <th class="task-table__header">
-        <%= link_to "締切",
+        <% arrow = (params[:sort] == "deadline") ? (params[:direction] == "asc" ? "↑" : "↓") : "  -" %>
+        <%= link_to "締切#{arrow}",
         tasks_path(
           keyword: params[:keyword],
           status: params[:status],
@@ -75,7 +78,8 @@
       %>
       </th>
       <th class="task-table__header">
-        <%= link_to "想定時間",
+        <% arrow = (params[:sort] == "estimated_time") ? (params[:direction] == "asc" ? "↑" : "↓") : "  -" %>
+        <%= link_to "想定時間#{arrow}",
         tasks_path(
           keyword: params[:keyword],
           status: params[:status],
