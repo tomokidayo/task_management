@@ -1,7 +1,18 @@
-<h1>チャット一覧</h1>
-<%= button_to "新しいチャットを作成", chat_sessions_path, method: :post %>
-<ul>
-  <% @chat_sessions.each do |session| %>
-    <li><%= link_to session.title || "チャット ##{session.id}", session %></li>
-  <% end %>
-</ul>
+<div class="chat-list">
+  <h1 class="chat-list__title">チャット一覧</h1>
+  <div class="chat-list__actions">
+    <%= button_to "新しいチャットを作成",
+          chat_sessions_path,
+          method: :post,
+          class: "btn btn-primary" %>
+  </div>
+  <ul class="chat-list__items">
+    <% @chat_sessions.each do |session| %>
+      <li class="chat-list__item">
+        <%= link_to(session.title || "チャット ##{session.id}",
+              session,
+              class: "chat-list__link") %>
+      </li>
+    <% end %>
+  </ul>
+</div>
