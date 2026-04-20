@@ -567,3 +567,11 @@ header.header {
 .chat-room__submit:hover {
     background-color: #1e4fcf;
 }
+
+.chat-list__back {
+    margin-bottom: 20px;
+}
+
+.chat-room__back {
+    margin-bottom: 16px;
+}

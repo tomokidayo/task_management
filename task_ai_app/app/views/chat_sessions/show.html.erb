@@ -1,5 +1,8 @@
 <div class="chat-room">
   <h1 class="chat-room__title"><%= @chat_session.title || "チャット" %></h1>
+  <div class="chat-room__back">
+    <%= link_to "チャット一覧に戻る", chat_sessions_path, class: "btn" %>
+  </div>
   <div id="messages" class="chat-room__messages">
     <%= render @chat_messages %>
   </div>
