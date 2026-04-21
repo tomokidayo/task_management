@@ -32,7 +32,7 @@ class ChatSessionsController < ApplicationController
       #{task_summary}
 
       これらのタスク状況を踏まえて、ユーザーの相談に答えてください。
-      アドバイスは具体的で、実行可能で、優先順位付けを意識してください。
+      アドバイスは簡潔で、実行可能で、優先順位付けを意識してください。
       必要に応じて質問し、状況を深掘りしてください。
     TEXT
 
