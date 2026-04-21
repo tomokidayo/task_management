@@ -1,0 +1,12 @@
+<% if object.errors.any? %>
+  <div class="form-errors">
+    <p class="form-errors__title">
+      <%= object.errors.count %>件のエラーがあります
+    </p>
+    <ul class="form-errors__list">
+      <% object.errors.full_messages.each do |msg| %>
+        <li class="form-errors__item"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

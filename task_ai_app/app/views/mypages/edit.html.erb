@@ -1,5 +1,6 @@
 <div class="mypage-form">
   <h2 class="mypage-form__title">マイページ編集</h2>
+  <%= render "shared/error_messages", object: @user %>
   <%= form_with model: @user, url: mypage_path, method: :patch do |f| %>
     <div class="mypage-form__group">
       <%= f.label :name, class: "mypage-form__label" %>
