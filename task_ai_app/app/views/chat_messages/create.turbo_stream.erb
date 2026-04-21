@@ -5,10 +5,12 @@
                locals: { chat_message: @chat_message } %>
   </template>
 </turbo-stream>
-<turbo-stream action="append" target="messages">
-  <template>
-    <%= render partial: "chat_messages/chat_message",
-               formats: [:html],
-               locals: { chat_message: @assistant_message } %>
-  </template>
-</turbo-stream>
+<% if @assistant_message.present? %>
+  <turbo-stream action="append" target="messages">
+    <template>
+      <%= render partial: "chat_messages/chat_message",
+                 formats: [:html],
+                 locals: { chat_message: @assistant_message } %>
+    </template>
+  </turbo-stream>
+<% end %>
