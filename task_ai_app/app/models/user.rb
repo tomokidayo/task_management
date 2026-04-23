@@ -9,7 +9,15 @@ class User < ApplicationRecord
 
   validates :name, presence: { message: "ユーザー名を入力してください" }
   validates :email, presence: { message: "メールアドレスを入力してください" }
-  validates :password, length: { minimum: 6, message: "パスワードは6文字以上で入力してください" }, if: :password_required?
+  # validates :password, length: { minimum: 6, message: "パスワードは6文字以上で入力してください" }, if: :password_required?
+  validates :password,
+  length: { minimum: 6, message: "パスワードは6文字以上で入力してください" },
+  confirmation: { message: "パスワードが一致しません" },
+  if: :password_required?
+
+  validates :password_confirmation,
+  presence: { message: "確認用パスワードを入力してください" },
+  if: :password_required?
 
   validates :email, uniqueness: { case_sensitive: false, message: "このメールアドレスは既に使用されています" }
 

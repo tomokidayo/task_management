@@ -8,7 +8,7 @@ RSpec.describe Task, type: :model do
       task = build(:task, estimated_time: 60)
       expect(task.estimated_time_hhmm).to eq("01:00")
     end
-
+・
     it '5分なら "00:05" を返す' do
       task = build(:task, estimated_time: 5)
       expect(task.estimated_time_hhmm).to eq("00:05")
