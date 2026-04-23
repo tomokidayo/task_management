@@ -7,7 +7,8 @@ class ChatMessagesController < ApplicationController
     # ユーザーのメッセージ
     @chat_message = @chat_session.chat_messages.create!(
       role: "user",
-      content: params[:content]
+      content: params[:content],
+      user_id: current_user.id
     )
 
     # ★ タスク一覧プロンプトを毎回先頭に追加
@@ -30,7 +31,8 @@ class ChatMessagesController < ApplicationController
     # AIの返答を保存
     @assistant_message = @chat_session.chat_messages.create!(
       role: "assistant",
-      content: ai_reply
+      content: ai_reply,
+      user_id: current_user.id
     )
 
     respond_to do |format|
