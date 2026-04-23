@@ -1,6 +1,8 @@
 class ChatMessagesController < ApplicationController
   def create
-    @chat_session = ChatSession.find(params[:chat_session_id])
+    # @chat_session = ChatSession.find(params[:chat_session_id])
+    @chat_session = current_user.chat_sessions.find(params[:chat_session_id])
+
 
     # ユーザーのメッセージ
     @chat_message = @chat_session.chat_messages.create!(
