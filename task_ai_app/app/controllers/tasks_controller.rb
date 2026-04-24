@@ -1,14 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
 
-  # def index
-  #   # @tasks = current_user.tasks.order(created_at: :desc)
-  #   @tasks = current_user.tasks
-  #   .search(params[:keyword])
-  #   .with_status(params[:status])
-  #   .with_priority(params[:priority])
-  #   .order(deadline: :asc)
-  # end
   def index
     @tasks = current_user.tasks
                          .search(params[:keyword])

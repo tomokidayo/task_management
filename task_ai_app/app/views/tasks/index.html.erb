@@ -6,24 +6,66 @@
       <%= f.label :keyword, "キーワード検索", class: "task-search__label" %>
       <%= f.text_field :keyword, value: params[:keyword], class: "task-search__input" %>
     </div>
-    <div class="task-search__group">
-      <%= f.label :status, "ステータス", class: "task-search__label" %>
-      <%= f.select :status,
-            Task::STATUS_LABELS.map { |key, label| [label, key] },
-            { include_blank: "すべて" },
-            { selected: params[:status], class: "task-search__input" } %>
-    </div>
-    <div class="task-search__group">
-      <%= f.label :priority, "優先度", class: "task-search__label" %>
-      <%= f.select :priority,
-            Task::PRIORITY_LABELS.map { |key, label| [label, key] },
-            { include_blank: "すべて" },
-            { selected: params[:priority], class: "task-search__input" } %>
-    </div>
     <div class="task-search__actions">
       <%= f.submit "検索", class: "btn btn-primary" %>
     </div>
   <% end %>
+</div>
+<div class="task-filter">
+  <div class="task-filter__group">
+    <span class="task-filter__label">ステータス</span>
+    <% Task::STATUS_LABELS.each do |key, label| %>
+      <% active = params[:status] == key ? "task-filter__btn--active" : "" %>
+      <%= link_to label,
+          tasks_path(
+            keyword: params[:keyword],
+            status: key,
+            priority: params[:priority],
+            sort: params[:sort],
+            direction: params[:direction]
+          ),
+          class: "task-filter__btn #{active}" %>
+    <% end %>
+    <%# すべて解除ボタン %>
+    <% active = params[:status].blank? ? "task-filter__btn--active" : "" %>
+    <%= link_to "すべて",
+        tasks_path(
+          keyword: params[:keyword],
+          status: nil,
+          priority: params[:priority],
+          sort: params[:sort],
+          direction: params[:direction]
+        ),
+        class: "task-filter__btn #{active}" %>
+  </div>
+</div>
+<div class="task-filter">
+  <div class="task-filter__group">
+    <span class="task-filter__label">優先度</span>
+    <% Task::PRIORITY_LABELS.each do |key, label| %>
+      <% active = params[:priority] == key ? "task-filter__btn--active" : "" %>
+      <%= link_to label,
+          tasks_path(
+            keyword: params[:keyword],
+            status: params[:status],
+            priority: key,
+            sort: params[:sort],
+            direction: params[:direction]
+          ),
+          class: "task-filter__btn #{active}" %>
+    <% end %>
+    <%# すべて解除ボタン %>
+    <% active = params[:priority].blank? ? "task-filter__btn--active" : "" %>
+    <%= link_to "すべて",
+        tasks_path(
+          keyword: params[:keyword],
+          status: params[:status],
+          priority: nil,
+          sort: params[:sort],
+          direction: params[:direction]
+        ),
+        class: "task-filter__btn #{active}" %>
+  </div>
 </div>
 <!-- AIチャット -->
 <div class="task-list__chat">
@@ -31,7 +73,7 @@
 </div>
 <!-- 新規作成 -->
 <div class="task-list__actions">
-  <%= link_to "新規タスク", new_task_path, class: "btn btn-primary" %>
+  <%= link_to "新規タスクを作成", new_task_path, class: "btn btn-primary" %>
 </div>
 <!-- 一覧テーブル -->
 <table class="task-table">

@@ -83,7 +83,7 @@ class Task < ApplicationRecord
     return if deadline.blank?
 
     if deadline < Time.current
-      errors.add(:deadline, "は現在より後の日時を設定してください")
+      errors.add(:deadline, "締め切りは現在より後の日時を設定してください")
     end
   end
 end

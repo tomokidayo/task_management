@@ -4,8 +4,8 @@
       <%= object.errors.count %>件のエラーがあります
     </p>
     <ul class="form-errors__list">
-      <% object.errors.full_messages.each do |msg| %>
-        <li class="form-errors__item"><%= msg %></li>
+      <% object.errors.each do |error| %>
+        <li class="form-errors__item"><%= error.message %></li>
       <% end %>
     </ul>
   </div>
