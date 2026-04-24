@@ -3,7 +3,8 @@
 ユーザーはタスクの登録・編集・削除ができ、  AI がタスク内容をもとに優先度の提案・作業時間の見積もり・進捗アドバイスを行います。  
 「タスク管理」と「AI アシスタント」を一つの画面で完結できるのが特徴です。
 
-##　サービス画像
+## サービス画像
+
 <img width="1470" height="696" alt="スクリーンショット 2026-04-25 0 08 59" src="https://github.com/user-attachments/assets/428025ef-32bd-4e7a-a908-bb4d440e9c3d" /><img width="963" height="501" alt="スクリーンショット 2026-04-25 0 40 47" src="https://github.com/user-attachments/assets/9ed4cbf6-7340-4acc-a02f-4be70c3adcc0" />
 
 
