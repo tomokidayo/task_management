@@ -8,12 +8,6 @@
     <%= f.label :password,"パスワード", class: "login-form__label" %>
     <%= f.password_field :password, autocomplete: "current-password", class: "login-form__input" %>
   </div>
-  <% if devise_mapping.rememberable? %>
-    <div class="login-form__group login-form__group--checkbox">
-      <%= f.check_box :remember_me, class: "login-form__checkbox" %>
-      <%= f.label :remember_me, class: "login-form__label login-form__label--checkbox" %>
-    </div>
-  <% end %>
   <div class="login-form__actions">
     <%= f.submit "Log in", class: "login-form__submit" %>
   </div>
