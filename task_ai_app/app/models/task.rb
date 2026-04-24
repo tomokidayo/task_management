@@ -3,7 +3,7 @@ class Task < ApplicationRecord
   before_validation :convert_times_to_minutes
 
   validates :title, presence: { message: "タイトルを入力してください" }
-  validate :deadline_must_be_future
+  # validate :deadline_must_be_future
 
   enum status: {
     not_started: 0,
@@ -77,13 +77,13 @@ class Task < ApplicationRecord
     where(priority: priority)
   }
 
-  private
+  # private
 
-  def deadline_must_be_future
-    return if deadline.blank?
+  # def deadline_must_be_future
+  #   return if deadline.blank?
 
-    if deadline < Time.current
-      errors.add(:deadline, "締め切りは現在より後の日時を設定してください")
-    end
-  end
+  #   if deadline < Time.current
+  #     errors.add(:deadline, "締め切りは現在より後の日時を設定してください")
+  #   end
+  # end
 end
