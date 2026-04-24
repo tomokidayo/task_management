@@ -594,7 +594,7 @@ header.header {
     padding: 24px;
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .mypage-form__title {
@@ -647,7 +647,7 @@ header.header {
 
 .mypage-form__submit {
     padding: 10px 24px;
-    background-color: #28a745;
+    background-color: #007bff;
     color: #fff;
     border-radius: 6px;
     border: none;
@@ -682,4 +682,35 @@ header.header {
 .form-errors__item {
     color: #d8000c;
     margin-bottom: 4px;
+}
+
+/* フィルターボタン */
+.task-filter {
+    margin-bottom: 20px;
+}
+
+.task-filter__group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.task-filter__label {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.task-filter__btn {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+}
+
+.task-filter__btn--active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
 }
