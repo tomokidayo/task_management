@@ -2,7 +2,7 @@
 https://young-shelf-45149-d1919208bcf6.herokuapp.com
 
 ### ゲストアカウント
-- **メールアドレス：テストユーザー**
+- **メールアドレス：testuser@test.com**
 - **パスワード：test1234**
 
 ## アプリの概要
