@@ -1,78 +1,24 @@
-## アプリの概要
-タスク管理と AI チャットを組み合わせた作業効率化サポートアプリ
-ユーザーはタスクの登録・編集・削除ができ、AIがタスク内容をもとに優先度の提案・作業時間の見積もり・進捗アドバイスを行う  
+# README
 
-## サービス画像
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-### タスク一覧画面
+Things you may want to cover:
 
-<img width="1470" height="696" alt="スクリーンショット 2026-04-25 0 08 59" src="https://github.com/user-attachments/assets/428025ef-32bd-4e7a-a908-bb4d440e9c3d" />
-### AIチャット画面
-<img width="744" height="540" alt="スクリーンショット 2026-04-25 13 33 00" src="https://github.com/user-attachments/assets/83c524d8-730b-423d-abac-bc388108e311" />
+* Ruby version
 
+* System dependencies
 
+* Configuration
 
+* Database creation
 
-## アプリの使い方
-- **ユーザー登録 / ログイン**  
-  アカウントを作成すると、マイページとタスク管理機能が利用できる
+* Database initialization
 
-- **タスクの作成・編集・削除**  
-  タスク名、説明、期限、想定時間などを入力して登録
+* How to run the test suite
 
-- **AI チャットでタスク相談**  
-  タスク一覧から AI チャット画面に移動し、  「今日やるべきタスクは」など質問すると、  AI がタスク情報をもとにアドバイスを返す。
+* Services (job queues, cache servers, search engines, etc.)
 
-- **マイページ編集**  
-  名前・メールアドレス・パスワードの変更が可能
+* Deployment instructions
 
-## アプリのURL
-https://young-shelf-45149-d1919208bcf6.herokuapp.com/tasks
-
-## 使用技術
-
-### フロントエンド
-- HTML / CSS / JavaScript
-- Turbo / Stimulus（Hotwire）
-- Tailwind CSS
-
-### バックエンド
-- Ruby 3.3.3
-- Ruby on Rails 7.2.2.1
-
-### 認証
-- Devise（ユーザー登録・ログイン・パスワード管理）
-
-### AI 連携
-- Gemini API（タスク相談・優先度提案・作業時間見積もり）
-
-### デプロイ・開発環境
-- Heroku（本番環境）
-- VScode
-- Git / GitHub（バージョン管理）
-
-## 工夫した点
-
-### ER 図に基づく拡張性の高いモデル設計
-Users / Tasks / ChatSessions / ChatMessages を明確に分離し、将来的な機能追加（タグ付け、プロジェクト管理、AI モデル切替など）にも対応しやすい構造にした。
-
-### Hotwire（Turbo / Stimulus）による高速 UI 更新
-ページ遷移を最小限にし、タスク操作やチャット画面の更新を高速化。
-
-### AI 連携の最適化
-タスク情報（期限・優先度・想定時間など）を AI に渡す際、必要なデータだけを抽出してプロンプトを最適化。
-無駄なトークンを削減し、レスポンス速度とコストを改善した。
-
-## 今後の展望
-
-### 直近の修正、機能追加予定
--テスト実施
--UI修正（レスポンシブ対応など）
--管理者機能追加
--APIレスポンス見直し
--フィルター機能について
--パスワード再設定機能(メール送信)
--管理者機能（ユーザー一覧表示など）
-
-
-  
+* ...
