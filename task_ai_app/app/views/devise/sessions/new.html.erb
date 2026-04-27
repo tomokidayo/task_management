@@ -1,4 +1,8 @@
 <h2 class="login-title">ログイン</h2>
+<<<<<<< HEAD
+=======
+<%= render "shared/error_messages", object: resource %>
+>>>>>>> develop
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-form" }) do |f| %>
   <div class="login-form__group">
     <%= f.label :email,"メールアドレス", class: "login-form__label" %>

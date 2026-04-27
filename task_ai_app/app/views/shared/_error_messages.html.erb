@@ -10,3 +10,17 @@
     </ul>
   </div>
 <% end %>
+<% if object && object.errors.any? %>
+  <div class="error-messages">
+    <ul>
+      <% object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<% if flash[:alert] %>
+  <div class="error-messages">
+    <p><%= flash[:alert] %></p>
+  </div>
+<% end %>
