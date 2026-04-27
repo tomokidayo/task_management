@@ -1,54 +1,61 @@
+# アプリケーションのルーティング設定
+#
+# 各コントローラへの URL マッピングを定義する。
+# Devise のユーザー認証、タスク管理、チャット機能など
+# アプリ全体の URL 設計をここで管理する。
 Rails.application.routes.draw do
-  get "chat_messages/create"
-  get "chat_sessions/index"
-  get "chat_sessions/show"
-  get "chat_sessions/create"
-  get "tasks/index"
-  get "tasks/new"
-  get "tasks/create"
-  get "tasks/edit"
-  get "tasks/update"
-  get "tasks/destroy"
-  get "tasks/show"
+  # --- Devise（ユーザー認証） ---------------------------------------------
+
+  # Devise のルーティング
   devise_for :users
-  get "home/index"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/*
-  get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
-  # root to: "home#index"
-  # root to: "devise/sessions#new"
+  # ログイン画面をルートに設定
   devise_scope :user do
     root to: "devise/sessions#new"
   end
 
-  # root "tasks#index"
-  resources :tasks
+  # --- タスク管理 ----------------------------------------------------------
 
-
+  # タスク CRUD + ステータス更新
+  #
+  # GET    /tasks
+  # GET    /tasks/:id
+  # POST   /tasks
+  # PATCH  /tasks/:id
+  # DELETE /tasks/:id
+  #
+  # PATCH  /tasks/:id/update_status
   resources :tasks do
     patch :update_status, on: :member
   end
 
-  resources :chat_sessions, only: [ :index, :show, :create ]
+  # --- チャット機能 --------------------------------------------------------
 
-
+  # チャットセッション一覧・詳細・作成
+  #
+  # GET  /chat_sessions
+  # GET  /chat_sessions/:id
+  # POST /chat_sessions
   resources :chat_sessions, only: [ :index, :show, :create ] do
+    # チャットメッセージ作成
+    #
+    # POST /chat_sessions/:chat_session_id/chat_messages
     resources :chat_messages, only: [ :create ]
   end
 
-  resources :chat_sessions, only: [ :index, :show, :create ] do
-    resources :chat_messages, only: [ :create ]
-  end
+  # --- マイページ -----------------------------------------------------------
 
-
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # GET /mypage
+  # GET /mypage/edit
+  # PATCH /mypage
   resource :mypage, only: [ :show, :edit, :update ]
+
+  # --- Rails 標準ヘルスチェック --------------------------------------------
+
+  get "up" => "rails/health#show", as: :rails_health_check
+
+  # --- PWA 用ルート ---------------------------------------------------------
+
+  get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 end
