@@ -59,6 +59,9 @@ https://young-shelf-45149-d1919208bcf6.herokuapp.com
 - **Ruby on Rails 7.2.2.1**
 - **PostgreSQL**
 
+### AI
+- **Gemini API**
+
 ### デプロイ
 - **Heroku**
 
@@ -70,3 +73,14 @@ https://young-shelf-45149-d1919208bcf6.herokuapp.com
 
 ## ER図
 <img width="414" height="691" alt="image" src="https://github.com/user-attachments/assets/3c3deac9-9d77-4dd4-972b-4c9f49a46325" />
+
+## 今後の展望
+### 直近の修正予定
+- **テスト実施**
+- **管理者機能**
+- **UI修正（親しみやすいデザイン、レスポンシブ対応)**
+- **チャット機能プロンプト見直し**
+
+### 中長期的な目標
+- **チームでのタスク管理機能追加**
+- **タスクの一括登録**
