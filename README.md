@@ -1,24 +1,65 @@
-# README
+## アプリの概要
+このアプリは、日々のタスク管理と AI チャットを組み合わせた作業効率化サポートアプリである。  
+ユーザーはタスクの登録・編集・削除ができ、  AI がタスク内容をもとに優先度の提案・作業時間の見積もり・進捗アドバイスを行う。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## アプリのスクリーンショット
+- **タスク一覧画面**  
+<img width="1459" height="684" alt="スクリーンショット 2026-04-27 21 40 04" src="https://github.com/user-attachments/assets/d20a9226-1cd3-4579-bdb7-608caf3f0135" />
 
-Things you may want to cover:
+- **チャット画面**  
+<img width="761" height="243" alt="スクリーンショット 2026-04-27 21 41 55" src="https://github.com/user-attachments/assets/1e8d7194-1477-438e-b27a-44af2ab9f608" />
 
-* Ruby version
 
-* System dependencies
+## アプリの使い方
+- **ユーザー登録 / ログイン**  
+  アカウントを作成すると、マイページとタスク管理機能が利用できる。
 
-* Configuration
+- **タスクの作成・編集・削除**  
+  タスク名、説明、期限、想定時間などを入力して登録する。  
 
-* Database creation
+- **AI チャットでタスク相談**  
+  タスク一覧から AI チャット画面に移動し、  
+  「今日やるべきタスクは」など質問すると、  
+  AI がタスク情報をもとにアドバイスを返します。
 
-* Database initialization
+- **マイページ編集**  
+  名前・メールアドレス・パスワードの変更が可能
 
-* How to run the test suite
+## 作成した背景
+日々のタスク管理において、「タスクの優先度判断に時間がかかる」「作業時間の見積もりが曖昧で予定が崩れる」といった課題があり、そこで、AI がタスク管理をサポートしてくれるアプリを作ることで、ユーザーが意思決定に使う時間を減らし、作業に集中できる環境を作りたいと考えた。
 
-* Services (job queues, cache servers, search engines, etc.)
+また、Rails × AI の構成を実務レベルで扱えるようになること、ポートフォリオとして「実際に使えるアプリ」を作ることも目的としている。
 
-* Deployment instructions
+## 工夫した点
+### AI チャットの最適化
 
-* ...
+- **タスク一覧から必要な情報だけを抽出し、Gemini API　に送るプロンプトを最適化**
+
+- **Turbo Stream によるリアルタイム更新で、チャットをスムーズにした**
+
+### タスク管理の UI/UX 改善
+
+- **ステータス・優先度・キーワード検索を組み合わせたフィルタリング**
+
+- **BEMを意識したCSS設計**
+
+## 使用した技術
+### フロントエンド
+- **HTML / CSS / JavaScript**
+
+### バックエンド
+- **Ruby 3.3**
+- **Ruby on Rails 7.2.2.1**
+- **PostgreSQL**
+
+### デプロイ
+- **Heroku**
+
+### バージョン管理
+- **Git/Github**
+
+### エディタ
+- **VisualStudioCode**
+
+## ER図
+<img width="414" height="691" alt="image" src="https://github.com/user-attachments/assets/3c3deac9-9d77-4dd4-972b-4c9f49a46325" />
