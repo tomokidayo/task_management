@@ -35,6 +35,7 @@ class ChatMessagesController < ApplicationController
 
     if ai_reply.nil? || ai_reply == ""
       Rails.logger.error("Gemini API Error: AI reply is nil or empty")
+      ai_reply = "⚠️ AIが混み合っています。しばらくしてから再度お試しください。"
       return
     end
 
