@@ -6,6 +6,8 @@
 # @see ChatSession
 # @see ChatMessage
 class ChatMessagesController < ApplicationController
+  # 直近10件のみ送る（system プロンプトは常に含める）
+  HISTORY_LIMIT = 10
   # メッセージを作成し、AI に送信して返答を保存する
   #
   # @return [void]
@@ -28,7 +30,7 @@ class ChatMessagesController < ApplicationController
     # --- AI に渡すメッセージ配列を構築 -------------------------------------
     # system → user/assistant の順で全履歴を渡す
     messages_for_ai = [ system_prompt_message ] +
-      @chat_session.chat_messages.where.not(role: :system).where.not(content: nil)
+      @chat_session.chat_messages.where.not(role: :system).where.not(content: nil).last(HISTORY_LIMIT)
 
     # --- AI の返答を取得 ----------------------------------------------------
     ai_reply = GeminiClient.chat(messages_for_ai)
@@ -36,7 +38,7 @@ class ChatMessagesController < ApplicationController
     if ai_reply.nil? || ai_reply == ""
       Rails.logger.error("Gemini API Error: AI reply is nil or empty")
       ai_reply = "⚠️ AIが混み合っています。しばらくしてから再度お試しください。"
-      return
+      # return
     end
 
     # --- AI の返答を保存 ----------------------------------------------------
